@@ -1,0 +1,48 @@
+{
+  "name": "negroni",
+  "version": "1.0.0",
+  "description": "Miesiąc efektywnych spotkań",
+  "main": "index.ts",
+  "scripts": {
+    "start": "ts-node src/main.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HealthTechDevelopers/negroni.git"
+  },
+  "author": "perzanko",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HealthTechDevelopers/negroni/issues"
+  },
+  "homepage": "https://github.com/HealthTechDevelopers/negroni#readme",
+  "devDependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/node": "^13.7.0",
+    "typescript": "^3.7.5"
+  },
+  "dependencies": {
+    "@nestjs/common": "^6.11.6",
+    "@nestjs/core": "^6.10.14",
+    "@nestjs/platform-express": "^6.10.14",
+    "@nestjs/schedule": "^0.2.0",
+    "@nestjs/typeorm": "^6.2.0",
+    "@slack/events-api": "^2.3.1",
+    "@slack/interactive-messages": "^1.4.1",
+    "@slack/web-api": "^5.7.0",
+    "@types/moment": "^2.13.0",
+    "@types/moment-timezone": "^0.5.12",
+    "axios": "^0.19.2",
+    "dotenv": "^8.2.0",
+    "googleapis": "^47.0.0",
+    "moment": "^2.24.0",
+    "moment-timezone": "^0.5.27",
+    "pg": "^7.18.1",
+    "reflect-metadata": "^0.1.13",
+    "rimraf": "^3.0.0",
+    "rxjs": "^6.5.4",
+    "ts-node": "^8.6.2",
+    "typeorm": "^0.2.22",
+    "uuid": "^3.4.0"
+  }
+}
