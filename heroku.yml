@@ -1,0 +1,5 @@
+build:
+  docker:
+    web: Dockerfile
+run:
+  web: node -r ts-node/register/transpile-only src/main.ts
