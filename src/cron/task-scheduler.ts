@@ -38,12 +38,12 @@ export class TaskScheduler {
           if (event.status !== 'cancelled' && Array.isArray(event.attendees)) {
             const userAsAttendeee = event.attendees.find((x) => x.email === user.email)
 
+            console.log(event);
             if (
               userAsAttendeee &&
               userAsAttendeee.responseStatus !== 'declined' &&
               moment().diff(moment(event.end.dateTime), 'minutes') > 5
             ) {
-              console.log(event);
               this.logger.log(`creating survey for ended event '${event.summary}' (${event.start.dateTime} - ${event.end.dateTime}), userId: ${user.id}, userEmail: ${user.email}`);
               this.surveyService.createSurvey(
                 user.id,
