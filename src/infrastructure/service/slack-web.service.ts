@@ -61,7 +61,19 @@ export class SlackWebService {
   }
 
   public async sendSurveySuccessMessage(userId) {
-  return this.sendMessage(userId, `Dzięki za wypełnienie! 🙌`)
+    const thanksMessages = [
+      'Dzięki! 🙌',
+      'Ok, mam to! 👌',
+      'Super 😻',
+      'Przyjemność z Tobą to czysty interes! 🍻',
+      'Klasa! 👏',
+      'Dzięki!',
+      `Zapisałem, dzięki <@${userId}>`,
+      '🙌',
+      'Uprzejmie dziękuję 🤓',
+      'Szybko poszło!'
+    ]
+    return this.sendMessage(userId, thanksMessages[Math.floor(Math.random() * thanksMessages.length)])
   }
 
   public async sendSurveyDialog(triggerId: string, surveyId: string) {
@@ -88,7 +100,7 @@ export class SlackWebService {
             },
             element: {
               type: "static_select",
-              action_id: "rate",
+              action_id: "general_rate",
               placeholder: {
                 type: "plain_text",
                 text: "1-5"
@@ -136,11 +148,11 @@ export class SlackWebService {
             type: 'input',
             label: {
               type: "plain_text",
-              text: "⏱ Czy spotkanie zaczęło się o czasie?"
+              text: "🎉 Czy cel spotkania został osiągnięty?"
             },
             element: {
               type: "static_select",
-              action_id: "no_delay",
+              action_id: "target_achieved",
               placeholder: {
                 type: "plain_text",
                 text: "Tak/Nie",
@@ -170,11 +182,53 @@ export class SlackWebService {
             type: 'input',
             label: {
               type: "plain_text",
-              text: "🎉 Czy cel spotkania został osiągnięty?"
+              text: "📝 Czy do spotkania została przygotowana agenda?"
             },
             element: {
               type: "static_select",
-              action_id: "target",
+              action_id: "has_agenda",
+              placeholder: {
+                type: "plain_text",
+                text: "Tak/Nie/Było to wydarzenie scrumowe",
+                emoji: true
+              },
+              options: [
+                {
+                  "text": {
+                    "type": "plain_text",
+                    "text": "Tak",
+                    "emoji": true
+                  },
+                  "value": "1"
+                },
+                {
+                  "text": {
+                    "type": "plain_text",
+                    "text": "Nie",
+                    "emoji": true
+                  },
+                  "value": "0"
+                },
+                {
+                  "text": {
+                    "type": "plain_text",
+                    "text": "Było to wydarzenie scrumowe",
+                    "emoji": true
+                  },
+                  "value": "2"
+                }
+              ]
+            }
+          },
+          {
+            type: 'input',
+            label: {
+              type: "plain_text",
+              text: "⏱ Czy spotkanie zaczęło się o czasie?"
+            },
+            element: {
+              type: "static_select",
+              action_id: "punctual",
               placeholder: {
                 type: "plain_text",
                 text: "Tak/Nie",
@@ -250,14 +304,6 @@ export class SlackWebService {
                 {
                   "text": {
                     "type": "plain_text",
-                    "text": "75 min",
-                    "emoji": true
-                  },
-                  "value": "70"
-                },
-                {
-                  "text": {
-                    "type": "plain_text",
                     "text": "90 min",
                     "emoji": true
                   },
@@ -266,10 +312,18 @@ export class SlackWebService {
                 {
                   "text": {
                     "type": "plain_text",
-                    "text": "90+ min",
+                    "text": "120 min",
                     "emoji": true
                   },
-                  "value": "90+"
+                  "value": "120"
+                },
+                {
+                  "text": {
+                    "type": "plain_text",
+                    "text": "więcej",
+                    "emoji": true
+                  },
+                  "value": "120+"
                 }
               ]
             }
@@ -278,11 +332,11 @@ export class SlackWebService {
             type: 'input',
             label: {
               type: "plain_text",
-              text: "⏰ Czy spotkanie przedłużyło się? Jeśli tak to o ile?"
+              text: "⏰ Czy spotkanie zostało przedłużone? Jeśli tak to ile?"
             },
             element: {
               type: "static_select",
-              action_id: "scheduled_time",
+              action_id: "extended",
               placeholder: {
                 type: "plain_text",
                 text: "Tak/Nie",
@@ -292,10 +346,26 @@ export class SlackWebService {
                 {
                   "text": {
                     "type": "plain_text",
-                    "text": "0 min",
+                    "text": "0 min - wszystko cool",
                     "emoji": true
                   },
                   "value": "0"
+                },
+                {
+                  "text": {
+                    "type": "plain_text",
+                    "text": "5 min",
+                    "emoji": true
+                  },
+                  "value": "5"
+                },
+                {
+                  "text": {
+                    "type": "plain_text",
+                    "text": "10 min",
+                    "emoji": true
+                  },
+                  "value": "10"
                 },
                 {
                   "text": {
@@ -308,18 +378,18 @@ export class SlackWebService {
                 {
                   "text": {
                     "type": "plain_text",
-                    "text": "30 min",
+                    "text": "20 min",
                     "emoji": true
                   },
-                  "value": "30"
+                  "value": "20"
                 },
                 {
                   "text": {
                     "type": "plain_text",
-                    "text": "30+ min",
+                    "text": "więcej",
                     "emoji": true
                   },
-                  "value": "30+"
+                  "value": "20+"
                 }
               ]
             }

@@ -39,7 +39,7 @@ export class TaskScheduler {
             if (
               userAsAttendeee &&
               userAsAttendeee.responseStatus !== 'declined' &&
-              moment().diff(moment(event.end.dateTime), 'minutes') > 10
+              moment().diff(moment(event.end.dateTime), 'minutes') > 5
             ) {
               this.logger.log(`creating survey for ended event '${event.summary}' (${event.start.dateTime} - ${event.end.dateTime}), userId: ${user.id}, userEmail: ${user.email}`);
               this.surveyService.createSurvey(
