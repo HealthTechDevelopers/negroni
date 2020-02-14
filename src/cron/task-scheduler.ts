@@ -34,6 +34,7 @@ export class TaskScheduler {
         this.logger.log(`found ${events.length} events, userId: ${user.id}, userEmail: ${user.email}`);
 
         for (const event of events) {
+          console.log(events);
           if (event.status !== 'cancelled') {
             const userAsAttendeee = event.attendees.find((x) => x.email === user.email)
 
