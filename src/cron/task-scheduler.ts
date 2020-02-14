@@ -52,6 +52,7 @@ export class TaskScheduler {
           }
         }
       } catch (error) {
+        console.log(error);
         this.logger.error(`Cannot lookup events, email: ${user.email}, startDate: ${moment().subtract(15, 'minutes').format()}, endDate: ${moment().format()}`);
         this.logger.error(error);
       }
