@@ -77,7 +77,7 @@ export class SlackWebService {
         },
         submit: {
           type: 'plain_text',
-          text: 'Wyślij 👉'
+          text: 'Wyślij ✉️'
         },
         blocks: [
           {
