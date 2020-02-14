@@ -26,20 +26,23 @@ export class SlackWebService {
   }
 
   public async sendSurveyRequest(surveyId, userId, eventName, eventStartDate, eventEndDate, timezone) {
+    const messages = [
+      `Cześć <@${userId}>! 👋 \nPrzed chwilą uczestniczyłeś/łaś w spotkaniu *${eventName}* \nZgodnie z kalendarzem powinno zacząć się o *${moment(eventStartDate).tz(timezone).format(`HH:mm`)}* i skończyć o *${moment(eventEndDate).tz(timezone).format(`HH:mm`)}*. Daj znać czy wszystko poszło dobrze wypełniając szybką ankietę:`,
+      `Darz bór <@${userId}>, przed chwilą skończyłeś(aś) spotkanie *${eventName}* \nTwój kalendarz powiedział nam, że powinno się ono zacząć o *${moment(eventStartDate).tz(timezone).format(`HH:mm`)}* i skończyć o *${moment(eventEndDate).tz(timezone).format(`HH:mm`)}*. Wypełnij naszą błyskawiczną ankietę, zostaw po sobie ślad w statystykach:`,
+      `Siemeczka-loteczka, z pewnych źródeł wiemy, że właśnie skończyłeś(aś) spotkanie *${eventName}* \nJeśli Twój kalendarz nie kłamie powinno ono potrwać od *${moment(eventStartDate).tz(timezone).format(`HH:mm`)}* do *${moment(eventEndDate).tz(timezone).format(`HH:mm`)}*. Daj znać, czy faktycznie tak było:`,
+    ]
+
+    const message = this.randomizeMessage(messages)
+
     return this.sendBlocksMessage(
       userId,
-      `Cześć <@${userId}>! 👋 Przed chwilą uczestniczyłeś/łaś w spotkaniu *${eventName}*`,
+      message,
       [
         {
           "type": "section",
           "text": {
             "type": "mrkdwn",
-            "text":
-              `Cześć <@${userId}>! 👋 \n` +
-              `Przed chwilą uczestniczyłeś/łaś w spotkaniu *${eventName}* \n` +
-              `Zgodnie z kalendarzem powinno zacząć się o *${moment(eventStartDate).tz(timezone).format(`HH:mm`)}* i skończyć o *${moment(eventEndDate).tz(timezone).format(`HH:mm`)}*. ` +
-              `Daj znać czy wszystko poszło dobrze wypełniając szybką ankietę :nerd_face:`
-
+            "text": message
           }
         },
         {
@@ -71,9 +74,15 @@ export class SlackWebService {
       `Zapisałem, dzięki <@${userId}>`,
       '🙌',
       'Uprzejmie dziękuję 🤓',
-      'Szybko poszło!'
+      'Szybko pojszło!',
+      'Jesteś zwycięzcą :trophy:',
+      'Danke, merci i здраствуйте!',
+      'Cudowności, all hearts :hearts:'
     ]
-    return this.sendMessage(userId, thanksMessages[Math.floor(Math.random() * thanksMessages.length)])
+
+    const message = this.randomizeMessage(thanksMessages)
+
+    return this.sendMessage(userId, message)
   }
 
   public async sendSurveyDialog(triggerId: string, surveyId: string) {
@@ -397,5 +406,9 @@ export class SlackWebService {
         ]
       }
     });
+  }
+
+  private randomizeMessage(messages) {
+    return messages[Math.floor(Math.random() * messages.length)]
   }
 }

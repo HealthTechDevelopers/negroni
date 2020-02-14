@@ -16,9 +16,7 @@ export class TaskScheduler {
   ) {
   }
 
-  // @Cron(CronExpression.EVERY_10_MINUTES)
-  @Cron(CronExpression.EVERY_10_SECONDS)
-
+  @Cron(CronExpression.EVERY_10_MINUTES)
   public async performEventsLookup() {
     this.logger.log('started events lookup');
 
@@ -38,7 +36,6 @@ export class TaskScheduler {
           if (event.status !== 'cancelled' && Array.isArray(event.attendees)) {
             const userAsAttendeee = event.attendees.find((x) => x.email === user.email)
 
-            console.log(event);
             if (
               userAsAttendeee &&
               userAsAttendeee.responseStatus !== 'declined' &&
