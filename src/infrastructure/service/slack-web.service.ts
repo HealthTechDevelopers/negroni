@@ -27,7 +27,7 @@ export class SlackWebService {
 
   public async sendSurveyRequest(surveyId, userId, eventName, eventStartDate, eventEndDate, timezone) {
     return this.sendBlocksMessage(
-      'UMPFKNH7S',
+      userId,
       `Cześć <@${userId}>! 👋 Przed chwilą uczestniczyłeś/łaś w spotkaniu *${eventName}*`,
       [
         {
