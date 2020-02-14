@@ -27,7 +27,7 @@ export class SlackWebService {
 
   public async sendSurveyRequest(surveyId, userId, eventName, eventStartDate, eventEndDate, timezone) {
     const messages = [
-      `Cześć <@${userId}>! 👋 \nPrzed chwilą uczestniczyłeś/łaś w spotkaniu *${eventName}* \nZgodnie z kalendarzem powinno zacząć się o *${moment(eventStartDate).tz(timezone).format(`HH:mm`)}* i skończyć o *${moment(eventEndDate).tz(timezone).format(`HH:mm`)}*. Daj znać czy wszystko poszło dobrze wypełniając szybką ankietę:`,
+      `Cześć <@${userId}>! 👋 \nPrzed chwilą uczestniczyłeś(aś) w spotkaniu *${eventName}* \nZgodnie z kalendarzem powinno zacząć się o *${moment(eventStartDate).tz(timezone).format(`HH:mm`)}* i skończyć o *${moment(eventEndDate).tz(timezone).format(`HH:mm`)}*. Daj znać czy wszystko poszło dobrze wypełniając szybką ankietę:`,
       `Darz bór <@${userId}>, przed chwilą skończyłeś(aś) spotkanie *${eventName}* \nTwój kalendarz powiedział nam, że powinno się ono zacząć o *${moment(eventStartDate).tz(timezone).format(`HH:mm`)}* i skończyć o *${moment(eventEndDate).tz(timezone).format(`HH:mm`)}*. Wypełnij naszą błyskawiczną ankietę, zostaw po sobie ślad w statystykach:`,
       `Siemeczka-loteczka, z pewnych źródeł wiemy, że właśnie skończyłeś(aś) spotkanie *${eventName}* \nJeśli Twój kalendarz nie kłamie powinno ono potrwać od *${moment(eventStartDate).tz(timezone).format(`HH:mm`)}* do *${moment(eventEndDate).tz(timezone).format(`HH:mm`)}*. Daj znać, czy faktycznie tak było:`,
     ]
