@@ -28,6 +28,7 @@ export class GoogleApiService {
 
     return calendar.events.list({
       calendarId: email,
+      singleEvents: true,
       timeMin: moment(startDate).utc().format(),
       timeMax: moment(endDate).utc().format(),
     })
