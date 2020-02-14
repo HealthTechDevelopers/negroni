@@ -16,7 +16,8 @@ export class TaskScheduler {
   ) {
   }
 
-  @Cron(CronExpression.EVERY_10_MINUTES)
+  // @Cron(CronExpression.EVERY_10_MINUTES)
+  @Cron(CronExpression.EVERY_45_SECONDS)
   public async performEventsLookup() {
     this.logger.log('started events lookup');
 
