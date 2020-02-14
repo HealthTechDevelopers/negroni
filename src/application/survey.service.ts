@@ -40,7 +40,7 @@ export class SurveyService {
     await this.slackWebService.sendSurveySuccessMessage(survey.respondentId)
 
     this.logger.log(`survey completed, surveyId: ${surveyId}, result: ${JSON.stringify(result)}), respondent: ${survey.respondentId}, eventId: ${survey.eventId}, eventName: ${survey.eventName}, (${survey.eventStartDate} - ${survey.eventEndDate})`)
-    this.notificationService.sendSurveyCompleted(survey.respondentId, survey.eventName, survey.eventStartDate, survey.eventEndDate);
+    this.notificationService.sendSurveyCompleted(survey.respondentId, survey.eventName, survey.eventStartDate, survey.eventEndDate, survey.result);
 
     return this.surveyRepository.save(survey);
   }

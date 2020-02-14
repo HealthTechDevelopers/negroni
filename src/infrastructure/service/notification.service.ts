@@ -20,11 +20,11 @@ export class NotificationService {
     )
   }
 
-  public sendSurveyCompleted(userId: string, eventName: string, eventStartDate: Date, eventEndDate: Date) {
+  public sendSurveyCompleted(userId: string, eventName: string, eventStartDate: Date, eventEndDate: Date, result: any) {
     this.logger.log(`sent notification 'survey_completed' to channel ${NotificationService.CHANNEL}, userId: ${userId}, eventName: ${eventName}`)
     return this.slackWebService.sendMessage(
       NotificationService.CHANNEL,
-      `<@${userId}> uzupełnił/ła ankietę dotyczącą spotkania *${eventName} (${moment(eventStartDate).tz('Europe/Warsaw').format('HH:mm')} - ${moment(eventEndDate).tz('Europe/Warsaw').format('HH:mm')})*`
+      `<@${userId}> uzupełnił/ła ankietę dotyczącą spotkania *${eventName} (${moment(eventStartDate).tz('Europe/Warsaw').format('HH:mm')} - ${moment(eventEndDate).tz('Europe/Warsaw').format('HH:mm')})* \nWynik: \`\`\`${JSON.stringify(result)}\`\`\``
     )
   }
 }
