@@ -27,11 +27,9 @@ export class TaskScheduler {
       try {
         const events = (await this.googleApiService.getEventsByCalendar(
           user.email,
-          moment().subtract(15, 'minutes').toDate(),
-          moment().toDate()
+          moment().subtract(2, 'hours').toDate(),
+          moment().add(2, 'hours').toDate()
         )).data.items
-
-        console.log(user.email, events)
 
         this.logger.log(`found ${events.length} events, userId: ${user.id}, userEmail: ${user.email}`);
 
@@ -39,7 +37,11 @@ export class TaskScheduler {
           if (event.status !== 'cancelled' && Array.isArray(event.attendees)) {
             const userAsAttendeee = event.attendees.find((x) => x.email === user.email)
 
-            if (userAsAttendeee && userAsAttendeee.responseStatus !== 'declined') {
+            if (
+              userAsAttendeee &&
+              userAsAttendeee.responseStatus !== 'declined' &&
+              moment().diff(moment(event.end.dateTime), 'minutes') > 10
+            ) {
               this.logger.log(`creating survey for ended event '${event.summary}' (${event.start.dateTime} - ${event.end.dateTime}), userId: ${user.id}, userEmail: ${user.email}`);
               this.surveyService.createSurvey(
                 user.id,
