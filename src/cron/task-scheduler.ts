@@ -16,7 +16,8 @@ export class TaskScheduler {
   ) {
   }
 
-  @Cron(CronExpression.EVERY_10_MINUTES)
+  // @Cron(CronExpression.EVERY_10_MINUTES)
+  @Cron(CronExpression.EVERY_30_SECONDS)
   public async performEventsLookup() {
     this.logger.log('started events lookup');
 
@@ -29,6 +30,8 @@ export class TaskScheduler {
           moment().subtract(15, 'minutes').toDate(),
           moment().toDate()
         )).data.items
+
+        console.log(user.email, events)
 
         this.logger.log(`found ${events.length} events, userId: ${user.id}, userEmail: ${user.email}`);
 

@@ -24,7 +24,7 @@ export class GoogleApiService {
       auth: this.oauth2Client,
     })
 
-    this.logger.log(`fetched google calendar events for calendar ${email}`)
+    this.logger.log(`fetched google calendar events for calendar ${email}, startDate: ${moment(startDate).utc().format()}, endDate: ${moment(endDate).utc().format()}`)
 
     return calendar.events.list({
       calendarId: email,
