@@ -57,13 +57,23 @@ export class SlackWebService {
               },
               "style": "primary",
               "value": `start_survey__${surveyId}`
+            },
+            {
+              "type": "button",
+              "text": {
+                "type": "plain_text",
+                "text": "Spotkanie nie odbyło się",
+                "emoji": true
+              },
+              "style": "danger",
+              "value": `reject_survey__${surveyId}`
             }
           ]
         }
       ])
   }
 
-  public async sendSurveySuccessMessage(userId) {
+  public async sendSurveyCompletedMessage(userId) {
     const thanksMessages = [
       'Dzięki! 🙌',
       'Ok, mam to! 👌',
@@ -78,6 +88,19 @@ export class SlackWebService {
       'Jesteś zwycięzcą :trophy:',
       'Danke, merci i здраствуйте!',
       'Cudowności, all hearts :hearts:'
+    ]
+
+    const message = this.randomizeMessage(thanksMessages)
+
+    return this.sendMessage(userId, message)
+  }
+
+  public async sendSurveyRejectedMessage(userId) {
+    const thanksMessages = [
+      'Dzięki, odnotowane! 🙌',
+      'Ok, cenna informacja! :nerd_face:',
+      'Dzięki!',
+      `Zapisałem, dzięki <@${userId}>`
     ]
 
     const message = this.randomizeMessage(thanksMessages)

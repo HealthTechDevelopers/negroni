@@ -26,6 +26,11 @@ export class SlackInteractionsController {
         const surveyId = actions[0].value.split('__')[1];
         await this.slackWebService.sendSurveyDialog(trigger_id, surveyId)
       }
+
+      if (actions[0].value.includes('reject_survey')) {
+        const surveyId = actions[0].value.split('__')[1];
+        await this.surveyService.rejectSurvey(surveyId)
+      }
     }
 
     if (type === 'view_submission') {

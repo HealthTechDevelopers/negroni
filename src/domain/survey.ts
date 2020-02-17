@@ -73,4 +73,8 @@ export class Survey {
     this.completedAt = new Date();
     this.status = 'completed';
   }
+
+  public reject(): void {
+    this.status = 'rejected';
+  }
 }

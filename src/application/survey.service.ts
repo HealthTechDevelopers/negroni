@@ -37,10 +37,23 @@ export class SurveyService {
 
     survey.saveResult(result);
 
-    await this.slackWebService.sendSurveySuccessMessage(survey.respondentId)
+    await this.slackWebService.sendSurveyCompletedMessage(survey.respondentId)
 
     this.logger.log(`survey completed, surveyId: ${surveyId}, result: ${JSON.stringify(result)}), respondent: ${survey.respondentId}, eventId: ${survey.eventId}, eventName: ${survey.eventName}, (${survey.eventStartDate} - ${survey.eventEndDate})`)
     this.notificationService.sendSurveyCompleted(survey.respondentId, survey.eventName, survey.eventStartDate, survey.eventEndDate, survey.result);
+
+    return this.surveyRepository.save(survey);
+  }
+
+  public async rejectSurvey(surveyId: string): Promise<Survey> {
+    const survey = await this.surveyRepository.findOne(surveyId)
+
+    survey.reject();
+
+    await this.slackWebService.sendSurveyRejectedMessage(survey.respondentId)
+
+    this.logger.log(`survey rejected, surveyId: ${surveyId}, respondent: ${survey.respondentId}, eventId: ${survey.eventId}, eventName: ${survey.eventName}, (${survey.eventStartDate} - ${survey.eventEndDate})`)
+    this.notificationService.sendSurveyRejected(survey.respondentId, survey.eventName, survey.eventStartDate, survey.eventEndDate);
 
     return this.surveyRepository.save(survey);
   }
