@@ -286,80 +286,80 @@ export class SlackWebService {
               ]
             }
           },
-          {
-            type: 'input',
-            label: {
-              type: "plain_text",
-              text: "⌛ Na ile zostało zaplanowane spotkanie?️"
-            },
-            element: {
-              type: "static_select",
-              action_id: "scheduled_time",
-              placeholder: {
-                type: "plain_text",
-                text: "Tak/Nie",
-                emoji: true
-              },
-              "options": [
-                {
-                  "text": {
-                    "type": "plain_text",
-                    "text": "15 min",
-                    "emoji": true
-                  },
-                  "value": "15"
-                },
-                {
-                  "text": {
-                    "type": "plain_text",
-                    "text": "30 min",
-                    "emoji": true
-                  },
-                  "value": "30"
-                },
-                {
-                  "text": {
-                    "type": "plain_text",
-                    "text": "45 min",
-                    "emoji": true
-                  },
-                  "value": "45"
-                },
-                {
-                  "text": {
-                    "type": "plain_text",
-                    "text": "60 min",
-                    "emoji": true
-                  },
-                  "value": "60"
-                },
-                {
-                  "text": {
-                    "type": "plain_text",
-                    "text": "90 min",
-                    "emoji": true
-                  },
-                  "value": "90"
-                },
-                {
-                  "text": {
-                    "type": "plain_text",
-                    "text": "120 min",
-                    "emoji": true
-                  },
-                  "value": "120"
-                },
-                {
-                  "text": {
-                    "type": "plain_text",
-                    "text": "więcej",
-                    "emoji": true
-                  },
-                  "value": "120+"
-                }
-              ]
-            }
-          },
+          // {
+          //   type: 'input',
+          //   label: {
+          //     type: "plain_text",
+          //     text: "⌛ Na ile zostało zaplanowane spotkanie?️"
+          //   },
+          //   element: {
+          //     type: "static_select",
+          //     action_id: "scheduled_time",
+          //     placeholder: {
+          //       type: "plain_text",
+          //       text: "Tak/Nie",
+          //       emoji: true
+          //     },
+          //     "options": [
+          //       {
+          //         "text": {
+          //           "type": "plain_text",
+          //           "text": "15 min",
+          //           "emoji": true
+          //         },
+          //         "value": "15"
+          //       },
+          //       {
+          //         "text": {
+          //           "type": "plain_text",
+          //           "text": "30 min",
+          //           "emoji": true
+          //         },
+          //         "value": "30"
+          //       },
+          //       {
+          //         "text": {
+          //           "type": "plain_text",
+          //           "text": "45 min",
+          //           "emoji": true
+          //         },
+          //         "value": "45"
+          //       },
+          //       {
+          //         "text": {
+          //           "type": "plain_text",
+          //           "text": "60 min",
+          //           "emoji": true
+          //         },
+          //         "value": "60"
+          //       },
+          //       {
+          //         "text": {
+          //           "type": "plain_text",
+          //           "text": "90 min",
+          //           "emoji": true
+          //         },
+          //         "value": "90"
+          //       },
+          //       {
+          //         "text": {
+          //           "type": "plain_text",
+          //           "text": "120 min",
+          //           "emoji": true
+          //         },
+          //         "value": "120"
+          //       },
+          //       {
+          //         "text": {
+          //           "type": "plain_text",
+          //           "text": "więcej",
+          //           "emoji": true
+          //         },
+          //         "value": "120+"
+          //       }
+          //     ]
+          //   }
+          // },
           {
             type: 'input',
             label: {
