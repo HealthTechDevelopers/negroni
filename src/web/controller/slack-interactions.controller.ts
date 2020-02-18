@@ -24,12 +24,12 @@ export class SlackInteractionsController {
     if (type === 'block_actions') {
       if (actions[0].value.includes('start_survey')) {
         const surveyId = actions[0].value.split('__')[1];
-        await this.slackWebService.sendSurveyDialog(trigger_id, surveyId)
+        this.slackWebService.sendSurveyDialog(trigger_id, surveyId)
       }
 
       if (actions[0].value.includes('reject_survey')) {
         const surveyId = actions[0].value.split('__')[1];
-        await this.surveyService.rejectSurvey(surveyId)
+        this.surveyService.rejectSurvey(surveyId)
       }
     }
 
@@ -45,7 +45,7 @@ export class SlackInteractionsController {
 
       const surveyId = view.callback_id.split('__')[1]
 
-      await this.surveyService.completeSurvey(surveyId, result)
+      this.surveyService.completeSurvey(surveyId, result)
     }
 
     return null;
